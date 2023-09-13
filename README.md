@@ -3,6 +3,7 @@ The `Amazon` multi-component plugin can be used with HashiCorp [Packer](https://
 to create custom images. For the full list of available features for this plugin see [docs](docs).
 
 ## Installation
+push event example
 
 ### Using pre-built releases
 

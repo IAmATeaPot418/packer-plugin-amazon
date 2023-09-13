@@ -1,0 +1,24 @@
+name: Endor Labs Scan
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  endorlabs-scan:
+    permissions:
+      id-token: write # This is required for requesting the JWT
+    runs-on: ubuntu-latest
+    env:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v3
+      - uses: endorlabs/github-action@main
+        with:
+          namespace: "yolo"
+          scan_summary_output_type: "table"
+          ci_run: "false"
+          enable_github_action_token: "true"
+          additional_args: "--enable=git,analytics,secrets"

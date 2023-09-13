@@ -9,7 +9,7 @@ jobs:
   endorlabs-scan:
     permissions:
       id-token: write # This is required for requesting the JWT
-      security-events: write
+      # security-events: write # Only needed for SARIF Output
       actions: read
     runs-on: ubuntu-latest
     steps:
@@ -38,8 +38,9 @@ jobs:
           enable_github_action_token: "true"
           sarif_file: endor-labs.sarif
           additional_args: "--enable=git,analytics,secrets --ci-baseline=main"
-      - name: Upload SARIF to github
-        if: github.event_name == 'push'
-        uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
-        with:
-          sarif_file: endor-labs.sarif
+     # Use for to upload findings to GitHub.
+     # - name: Upload SARIF to github
+     #   if: github.event_name == 'push'
+     #   uses: github/codeql-action/upload-sarif@9885f86fab4879632b7e44514f19148225dfbdcd
+     #   with:
+     #     sarif_file: endor-labs.sarif
